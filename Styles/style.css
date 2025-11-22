@@ -74,33 +74,53 @@ body{
     background-color: var(--color-primary);
     color: var(--color-text-light);
 }
-.navbar-nav .nav-link{
+/* LINKS -------------------------------------------- */
+.navbar-nav .nav-link {
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
     font-size: large;
     font-style: normal;
     color: #818997;
+
+    display: inline-block;
+    position: relative; /* necessário p/ o underline */
+    transition: transform 0.35s cubic-bezier(0.22, 0.55, 0.27, 1);
 }
-/* Estilo para links de navegação no topo */
+
+/* Hover */
 .navbar-nav .nav-link:hover {
-    color: var(--color-primary) !important; /* Destaque ciano no hover */
+    color: var(--color-primary) !important;
+    transform: scale(1.18);
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 }
 
-nav::after{
-    content: ""; 
-    display: block; 
-
-
-
-    width: 100%; 
-    height: 4px; 
-    background-color: var(--color-primary);
-    
+/* UNDERLINE ANIMADO -------------------------------------------- */
+.navbar-nav .nav-link::after {
+    content: "";
     position: absolute;
-    bottom: -10px;
     left: 0;
+    bottom: -4px;
+
+    width: 0%;
+    height: 3px;
+    background-color: var(--color-primary);
+
+    border-radius: 4px;
+
+    transition: width 0.35s cubic-bezier(0.22, 0.55, 0.27, 1);
 }
+
+/* Mostrar underline no hover */
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* Mostrar underline na seção ativa */
+.navbar-nav .nav-link.active::after {
+    width: 100%;
+}
+
 
 
 
@@ -178,7 +198,7 @@ strong{
 #animated-button {
 
     background-color: rgb(10, 41, 2);
-    opacity: 70%;
+
     color: black;
     padding: 15px 30px;
     border: 2px solid rgb(0, 0, 0);
@@ -218,12 +238,13 @@ strong{
     z-index: -1; 
     
 
-    animation: pulse 2s infinite cubic-bezier(0.66, 0.0, 0.34, 1.0);
+    animation: pulse 3s infinite cubic-bezier(0.4, 0.0, 0.2, 1.0);
 }
 
 #animated-button:hover {
     box-shadow: 0px 2px 20px  greenyellow;
     opacity: 100%;
+    
     
 }
 
@@ -233,16 +254,16 @@ strong{
     0% {
 
         transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
+        opacity: 0.5;
     }
     50% {
 
         transform: translate(-50%, -50%) scale(1.15);
-        opacity: 1;
+        opacity: 0.7;
     }
     100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.50);
+        opacity: 1;
     }
 }
 

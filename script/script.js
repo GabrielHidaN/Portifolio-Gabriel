@@ -17,4 +17,28 @@
         });
     });
 
+// Seleciona todas as seções com ID e todos os links do menu
+const sections = document.querySelectorAll("section[id]");
 
+
+// Função para ativar o link correspondente
+function activateMenu() {
+    let scrollY = window.pageYOffset;
+
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 150;
+        const sectionId = section.getAttribute("id");
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+                link.classList.remove("active-link");
+            });
+
+            const activeLink = document.querySelector(`.navbar-nav .nav-link[href="#${sectionId}"]`);
+            if (activeLink) activeLink.classList.add("active-link");
+        }
+    });
+}
+
+window.addEventListener("scroll", activateMenu);
